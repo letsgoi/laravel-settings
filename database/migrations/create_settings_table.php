@@ -6,21 +6,20 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    public function up()
+    public function up(): void
     {
-        Schema::create('settings', function (Blueprint $table) {
-            $table->id();
+        Schema::create('settings', static function (Blueprint $table) {
+            $table->id('id')->primary();
+
+            $table->string('key')->unique();
+            $table->string('value')->default('');
+            $table->string('type');
+
             $table->timestamps();
-
-            $table->string('key');
-            $table->string('value')->nullable();
-            $table->string('type')->nullable();
-
-            $table->softDeletes();
         });
     }
 
-    public function down()
+    public function down(): void
     {
         Schema::dropIfExists('settings');
     }
