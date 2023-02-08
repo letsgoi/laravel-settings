@@ -16,7 +16,7 @@ class SettingRepositoryTest extends TestCase
         $settingRepository = new SettingRepository();
 
         Setting::create([
-            'key' => 'android_app_version',
+            'id' => 'android_app_version',
             'value' => '1',
             'type' => 'string',
         ]);
@@ -30,7 +30,7 @@ class SettingRepositoryTest extends TestCase
         $settingRepository = new SettingRepository();
 
         Setting::create([
-            'key' => 'android_app_version',
+            'id' => 'android_app_version',
             'value' => '1.5',
             'type' => 'float',
         ]);
@@ -44,7 +44,7 @@ class SettingRepositoryTest extends TestCase
         $settingRepository = new SettingRepository();
 
         Setting::create([
-            'key' => 'android_app_version',
+            'id' => 'android_app_version',
             'value' => json_encode(['1.5']),
             'type' => 'array',
         ]);
@@ -58,7 +58,7 @@ class SettingRepositoryTest extends TestCase
         $settingRepository = new SettingRepository();
 
         Setting::create([
-            'key' => 'android_app_version',
+            'id' => 'android_app_version',
             'value' => '1.2',
             'type' => 'int',
         ]);
@@ -72,13 +72,13 @@ class SettingRepositoryTest extends TestCase
         $settingRepository = new SettingRepository();
 
         Setting::create([
-            'key' => 'android_app_version',
+            'id' => 'android_app_version',
             'value' => '1',
             'type' => 'bool',
         ]);
 
         Setting::create([
-            'key' => 'ios_app_version',
+            'id' => 'ios_app_version',
             'value' => '0',
             'type' => 'bool',
         ]);
@@ -93,7 +93,7 @@ class SettingRepositoryTest extends TestCase
         $settingRepository = new SettingRepository();
 
         $this->expectException(Exception::class);
-        $this->expectExceptionMessage('The setting with key android_app_version does not exist');
+        $this->expectExceptionMessage('The setting with id android_app_version does not exist');
 
         $settingRepository->find('android_app_version');
     }
@@ -105,7 +105,7 @@ class SettingRepositoryTest extends TestCase
         $settingRepository = new SettingRepository();
 
         $setting = Setting::create([
-            'key' => 'pepe_app_version',
+            'id' => 'pepe_app_version',
             'value' => '1.2',
             'type' => 'string',
         ]);
@@ -114,6 +114,8 @@ class SettingRepositoryTest extends TestCase
 
         $setting->value = '2.1';
         $setting->save();
+
+        $settingRepository->forgetCache($setting);
 
         $this->assertEquals('2.1', $settingRepository->find('pepe_app_version'));
     }
