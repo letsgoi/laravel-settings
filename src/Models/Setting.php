@@ -7,11 +7,13 @@ use Illuminate\Database\Eloquent\Model;
 
 class Setting extends Model
 {
+    public $incrementing = false;
     protected $fillable = [
-        'key',
+        'id',
         'value',
         'type',
     ];
+    protected $keyType = 'string';
 
     public function value(): Attribute
     {
