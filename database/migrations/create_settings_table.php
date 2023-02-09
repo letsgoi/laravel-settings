@@ -9,9 +9,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('settings', static function (Blueprint $table) {
-            $table->id('id')->primary();
+            $table->string('id')->primary();
 
-            $table->string('key')->unique();
             $table->string('value')->default('');
             $table->string('type');
 

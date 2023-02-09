@@ -10,13 +10,13 @@ class SettingRepository
 {
     private const CACHE_PREFIX = 'letsgoi-laravel-settings-';
 
-    public function find(string $key): string|float|array|bool
+    public function find(string $id): string|float|array|bool
     {
-        return Cache::rememberForever($this->cacheKey($key), static function () use ($key) {
-            $setting = Setting::firstWhere('key', $key);
+        return Cache::rememberForever($this->cacheId($id), static function () use ($id) {
+            $setting = Setting::find($id);
 
             if ($setting === null) {
-                throw new Exception('The setting with key ' . $key . ' does not exist');
+                throw new Exception('The setting with id ' . $id . ' does not exist');
             }
 
             return $setting->value;
@@ -25,11 +25,11 @@ class SettingRepository
 
     public function forgetCache(Setting $setting): void
     {
-        Cache::forget($this->cacheKey($setting->key));
+        Cache::forget($this->cacheId($setting->id));
     }
 
-    private function cacheKey(string $key): string
+    private function cacheId(string $id): string
     {
-        return self::CACHE_PREFIX . $key;
+        return self::CACHE_PREFIX . $id;
     }
 }
