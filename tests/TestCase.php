@@ -38,9 +38,8 @@ class TestCase extends BaseTestCase
     protected function defineDatabaseMigrations(): void
     {
         $this->app['db']->connection()->getSchemaBuilder()->create('settings', function (Blueprint $table) {
-            $table->id();
+            $table->string('id')->primary();
 
-            $table->string('key')->unique();
             $table->string('value')->default('');
             $table->string('type');
 
