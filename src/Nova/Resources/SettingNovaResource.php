@@ -28,8 +28,12 @@ class SettingNovaResource extends Resource
         return 'Settings';
     }
 
-
     public function authorizedToDelete(Request $request): bool
+    {
+        return false;
+    }
+
+    public function authorizedToReplicate(Request $request): bool
     {
         return false;
     }
