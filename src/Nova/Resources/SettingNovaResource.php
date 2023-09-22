@@ -15,7 +15,7 @@ class SettingNovaResource extends Resource
     public static $model = Setting::class;
     public static $title = 'id';
     public static $search = [
-        'key',
+        'id',
     ];
 
     public static function authorizedToCreate(Request $request): bool
