@@ -40,6 +40,7 @@ class TestCase extends BaseTestCase
         $this->app['db']->connection()->getSchemaBuilder()->create('settings', function (Blueprint $table) {
             $table->string('id')->primary();
 
+            $table->string('key')->unique();
             $table->string('value')->default('');
             $table->string('type');
 

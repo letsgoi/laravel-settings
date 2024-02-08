@@ -10,6 +10,7 @@ class Setting extends Model
     public $incrementing = false;
     protected $fillable = [
         'id',
+        'key',
         'value',
         'type',
     ];

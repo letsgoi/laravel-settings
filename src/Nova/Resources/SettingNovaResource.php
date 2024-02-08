@@ -13,9 +13,9 @@ use Letsgoi\LaravelSettings\Models\Setting;
 class SettingNovaResource extends Resource
 {
     public static $model = Setting::class;
-    public static $title = 'id';
+    public static $title = 'key';
     public static $search = [
-        'id',
+        'key',
     ];
 
     public static function authorizedToCreate(Request $request): bool
@@ -49,7 +49,7 @@ class SettingNovaResource extends Resource
         };
 
         return [
-            Text::make('Id', 'id')->sortable()->readOnly(),
+            Text::make('Key', 'key')->sortable()->readOnly(),
             Text::make('Type', 'type')->sortable()->readOnly(),
             $valueField,
         ];
