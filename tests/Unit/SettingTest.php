@@ -14,7 +14,8 @@ class SettingTest extends TestCase
     public function it_should_return_string()
     {
         $setting = Setting::create([
-            'id' => 'android_app_version',
+            'id' => 'id',
+            'key' => 'android_app_version',
             'value' => 'string',
             'type' => 'string',
         ]);
@@ -26,7 +27,8 @@ class SettingTest extends TestCase
     public function it_should_return_float()
     {
         $setting = Setting::create([
-            'id' => 'android_app_version',
+            'id' => 'id',
+            'key' => 'android_app_version',
             'value' => 1.5,
             'type' => 'float',
         ]);
@@ -38,7 +40,8 @@ class SettingTest extends TestCase
     public function it_should_return_array()
     {
         $setting = Setting::create([
-            'id' => 'android_app_version',
+            'id' => 'id',
+            'key' => 'android_app_version',
             'value' => ['1.5'],
             'type' => 'array',
         ]);
@@ -50,7 +53,8 @@ class SettingTest extends TestCase
     public function it_should_return_int()
     {
         $setting = Setting::create([
-            'id' => 'android_app_version',
+            'id' => 'id',
+            'key' => 'android_app_version',
             'value' => 1,
             'type' => 'int',
         ]);
@@ -62,13 +66,15 @@ class SettingTest extends TestCase
     public function it_should_return_bool()
     {
         $settingTrue = Setting::create([
-            'id' => 'android_app_version',
+            'id' => 'id',
+            'key' => 'android_app_version',
             'value' => true,
             'type' => 'bool',
         ]);
 
         $settingFalse = Setting::create([
-            'id' => 'ios_app_version',
+            'id' => 'id2',
+            'key' => 'ios_app_version',
             'value' => false,
             'type' => 'bool',
         ]);
