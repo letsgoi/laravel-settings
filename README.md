@@ -1,8 +1,8 @@
 ## Laravel Settings
 Move your env variables to database to change them easily using laravel nova
 ## Requirements
-- PHP >= 8.0
-- Laravel >= 8.0
+- PHP >= 8.3
+- Laravel >= 10.0
 - Laravel nova license registered on project
 ## Installation
 - Require package with composer:

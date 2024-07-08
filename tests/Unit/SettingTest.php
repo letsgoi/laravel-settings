@@ -2,15 +2,13 @@
 
 namespace Letsgoi\LaravelSettings\Tests\Unit;
 
-use Exception;
 use Letsgoi\LaravelSettings\Models\Setting;
-use Letsgoi\LaravelSettings\Observers\SettingObserver;
-use Letsgoi\LaravelSettings\Repository\SettingRepository;
 use Letsgoi\LaravelSettings\Tests\TestCase;
+use PHPUnit\Framework\Attributes\Test;
 
 class SettingTest extends TestCase
 {
-    /** @test */
+    #[Test]
     public function it_should_return_string()
     {
         $setting = Setting::create([
@@ -23,7 +21,7 @@ class SettingTest extends TestCase
         $this->assertEquals('string', $setting->value);
     }
 
-    /** @test */
+    #[Test]
     public function it_should_return_float()
     {
         $setting = Setting::create([
@@ -36,7 +34,7 @@ class SettingTest extends TestCase
         $this->assertEquals(1.5, $setting->value);
     }
 
-    /** @test */
+    #[Test]
     public function it_should_return_array()
     {
         $setting = Setting::create([
@@ -49,7 +47,7 @@ class SettingTest extends TestCase
         $this->assertEquals([1.5], $setting->value);
     }
 
-    /** @test */
+    #[Test]
     public function it_should_return_int()
     {
         $setting = Setting::create([
@@ -62,7 +60,7 @@ class SettingTest extends TestCase
         $this->assertEquals(1, $setting->value);
     }
 
-    /** @test */
+    #[Test]
     public function it_should_return_bool()
     {
         $settingTrue = Setting::create([
