@@ -7,10 +7,11 @@ use Letsgoi\LaravelSettings\Models\Setting;
 use Letsgoi\LaravelSettings\Observers\SettingObserver;
 use Letsgoi\LaravelSettings\Repository\SettingRepository;
 use Letsgoi\LaravelSettings\Tests\TestCase;
+use PHPUnit\Framework\Attributes\Test;
 
 class SettingRepositoryTest extends TestCase
 {
-    /** @test */
+    #[Test]
     public function it_should_return_string()
     {
         $settingRepository = new SettingRepository();
@@ -25,7 +26,7 @@ class SettingRepositoryTest extends TestCase
         $this->assertEquals('1', $settingRepository->find('android_app_version'));
     }
 
-    /** @test */
+    #[Test]
     public function it_should_return_float()
     {
         $settingRepository = new SettingRepository();
@@ -40,7 +41,7 @@ class SettingRepositoryTest extends TestCase
         $this->assertEquals(1.5, $settingRepository->find('android_app_version'));
     }
 
-    /** @test */
+    #[Test]
     public function it_should_return_array()
     {
         $settingRepository = new SettingRepository();
@@ -55,7 +56,7 @@ class SettingRepositoryTest extends TestCase
         $this->assertEquals([1.5], $settingRepository->find('android_app_version'));
     }
 
-    /** @test */
+    #[Test]
     public function it_should_return_int()
     {
         $settingRepository = new SettingRepository();
@@ -70,7 +71,7 @@ class SettingRepositoryTest extends TestCase
         $this->assertEquals(1, $settingRepository->find('android_app_version'));
     }
 
-    /** @test */
+    #[Test]
     public function it_should_return_bool()
     {
         $settingRepository = new SettingRepository();
@@ -93,7 +94,7 @@ class SettingRepositoryTest extends TestCase
         $this->assertFalse($settingRepository->find('ios_app_version'));
     }
 
-    /** @test */
+    #[Test]
     public function it_should_return_error_if_variable_does_not_exist()
     {
         $settingRepository = new SettingRepository();
@@ -104,7 +105,7 @@ class SettingRepositoryTest extends TestCase
         $settingRepository->find('android_app_version');
     }
 
-    /** @test */
+    #[Test]
     public function it_should_return_updated_setting()
     {
         Setting::observe(SettingObserver::class);
