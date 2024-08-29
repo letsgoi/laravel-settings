@@ -19,8 +19,8 @@ class SettingRepository
                 throw new Exception('The setting with key ' . $key . ' does not exist');
             }
 
-            return $setting->value;
-        });
+            return $setting;
+        })->value;
     }
 
     public function forgetCache(Setting $setting): void
