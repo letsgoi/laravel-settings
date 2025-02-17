@@ -7,8 +7,10 @@ use Laravel\Nova\Fields\Boolean;
 use Laravel\Nova\Fields\Code;
 use Laravel\Nova\Fields\Number;
 use Laravel\Nova\Fields\Text;
+use Laravel\Nova\Http\Requests\NovaRequest;
 use Laravel\Nova\Resource;
 use Letsgoi\LaravelSettings\Models\Setting;
+use Letsgoi\LaravelSettings\Nova\Actions\ClearCache;
 
 class SettingNovaResource extends Resource
 {
@@ -36,6 +38,13 @@ class SettingNovaResource extends Resource
     public function authorizedToReplicate(Request $request): bool
     {
         return false;
+    }
+
+    public function actions(NovaRequest $request)
+    {
+        return [
+            ClearCache::make()->standalone(),
+        ];
     }
 
     public function fields(Request $request)
