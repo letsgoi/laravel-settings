@@ -4,9 +4,10 @@ namespace Letsgoi\LaravelSettings\Nova\Actions;
 
 use Illuminate\Bus\Queueable;
 use Illuminate\Queue\InteractsWithQueue;
-use Illuminate\Support\Facades\Artisan;
 use Laravel\Nova\Actions\Action;
 use Laravel\Nova\Actions\ActionResponse;
+use Letsgoi\LaravelSettings\Models\Setting;
+use Letsgoi\LaravelSettings\Repository\SettingRepository;
 
 class ClearCache extends Action
 {
@@ -27,7 +28,11 @@ class ClearCache extends Action
      */
     public function handle(): ActionResponse
     {
-        Artisan::call('cache:clear');
+        $settingsRepository = app(SettingRepository::class);
+
+        Setting::each(static function (Setting $setting) use ($settingsRepository) {
+            $settingsRepository->forgetCache($setting);
+        });
 
         return Action::message('Cache cleared');
     }
