@@ -17,10 +17,19 @@ class SettingsServiceProvider extends ServiceProvider
 
     private function registerPublishes(): void
     {
-        $this->publishes([
-            $this->local('create_settings_table.php') => $this->project('create_settings_table.php'),
-            $this->local('change_id_from_settings_table.php') => $this->project('change_id_from_settings_table.php'),
-        ], 'migrations');
+        $migrationNames = [
+            'create_settings_table.php',
+            'change_id_from_settings_table.php',
+            'alter_value_from_string_to_text_from_settings_table.php',
+        ];
+
+        $migrations = [];
+
+        foreach ($migrationNames as $key => $migrationName) {
+            $migrations[$this->local($migrationName)] = $this->project($key . '_' . $migrationName);
+        }
+
+        $this->publishes($migrations, 'migrations');
     }
 
     private function local(string $filename): string
